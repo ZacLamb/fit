@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<section class="hero">
+<section class="hero" style="background-image:url('/images/stock/sprint-start.jpg'), url('/images/facility.jpg'); background-size: cover, cover; background-position: center, center;">
   <div class="hero-inner">
     <span class="eyebrow">SANDWICH, MA</span>
     <h1>A NEW CHAPTER BEGINS.</h1>
@@ -25,12 +25,15 @@
     </div>
     <div class="grid grid-4">
       <% services.forEach(function(s) { %>
-        <div class="panel">
-          <div class="panel-tag"><%= s.duration_min %> MIN SESSION</div>
-          <h3><%= s.name %></h3>
-          <p><%= s.short_desc %></p>
-          <div class="panel-price"><%= s.price_label %></div>
-          <a href="/services/<%= s.slug %>" class="panel-link">Learn more &rsaquo;</a>
+        <div class="panel panel-service">
+          <img class="service-thumb" src="<%= s.image_path %>" alt="<%= s.name %>" onerror="this.src='/images/facility.jpg'">
+          <div class="panel-body">
+            <div class="panel-tag"><%= s.duration_min %> MIN SESSION</div>
+            <h3><%= s.name %></h3>
+            <p><%= s.short_desc %></p>
+            <div class="panel-price"><%= s.price_label %></div>
+            <a href="/services/<%= s.slug %>" class="panel-link">Learn more &rsaquo;</a>
+          </div>
         </div>
       <% }); %>
     </div>

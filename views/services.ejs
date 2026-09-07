@@ -9,20 +9,19 @@
     </div>
     <div class="grid grid-3">
       <% services.forEach(function(s) { %>
-        <div class="panel">
-          <div class="panel-tag"><%= s.duration_min %> MIN SESSION</div>
-          <h3><%= s.name %></h3>
-          <p><%= s.short_desc %></p>
-          <div class="panel-price"><%= s.price_label %></div>
-          <a href="/services/<%= s.slug %>" class="panel-link">View Details &rsaquo;</a>
+        <div class="panel panel-service">
+          <img class="service-thumb" src="<%= s.image_path %>" alt="<%= s.name %>" onerror="this.src='/images/facility.jpg'">
+          <div class="panel-body">
+            <div class="panel-tag"><%= s.duration_min %> MIN SESSION</div>
+            <h3><%= s.name %></h3>
+            <p><%= s.short_desc %></p>
+            <div class="panel-price"><%= s.price_label %></div>
+            <a href="/services/<%= s.slug %>" class="panel-link">View Details &rsaquo;</a>
+          </div>
         </div>
       <% }); %>
     </div>
   </div>
-</section>
-
-<section class="facility-strip">
-  <img src="/images/stock/sprint-start.jpg" alt="Athlete training at Zezze Athletics" onerror="this.src='/images/facility.jpg'">
 </section>
 
 <section class="section section-turf text-center">

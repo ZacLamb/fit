@@ -13,7 +13,10 @@
   <header class="site-header">
     <div class="nav-wrap">
       <a href="/" class="brand">ZEZZE <span>ATHLETICS</span></a>
-      <ul class="nav-links">
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
         <li><a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a></li>
         <li><a href="/services" class="<%= currentPath.startsWith('/services') ? 'active' : '' %>">Services</a></li>
         <li><a href="/booking" class="<%= currentPath.startsWith('/booking') ? 'active' : '' %>">Book a Session</a></li>
@@ -26,3 +29,4 @@
       </ul>
     </div>
   </header>
+  <script src="/js/nav.js"></script>

@@ -1,15 +1,75 @@
 // In-memory data store — no database required. Good for a quick demo;
-// data resets whenever the server restarts (or, on Netlify, whenever the
-// function cold-starts). Swap this module out for db/pool.js + real
-// Postgres queries whenever you're ready to run this for real — the
-// route files are the only other place that would need to change.
+// data resets whenever the server restarts. Swap this module out for
+// db/pool.js + real Postgres queries whenever you're ready to run this
+// for real — the route files are the only other place that would need
+// to change.
 
 const services = [
-  { id: 1, slug: 'sports-performance', name: 'Sports Performance Training', short_desc: 'Speed, power, and explosiveness for competitive athletes.', long_desc: 'Built for athletes who want to move faster, jump higher, and hold up over a full season. Sessions blend speed mechanics, power development, and sport-specific conditioning, programmed around your competition calendar.', duration_min: 60, price_label: 'From $65 / session', sort_order: 1, active: true },
-  { id: 2, slug: 'strength-conditioning', name: 'Strength & Conditioning', short_desc: 'Build a stronger, more resilient base year-round.', long_desc: 'Foundational strength work for athletes and everyday clients alike. We program progressive lifting, conditioning, and mobility work so you get stronger without breaking down.', duration_min: 60, price_label: 'From $60 / session', sort_order: 2, active: true },
-  { id: 3, slug: 'injury-prevention', name: 'Injury Prevention & Recovery', short_desc: 'Move well, stay on the field, and train through old limitations.', long_desc: 'A movement-first approach for clients returning from injury or looking to stay ahead of one. We assess how you move, correct the gaps, and build a plan that keeps you training consistently.', duration_min: 45, price_label: 'From $55 / session', sort_order: 3, active: true },
-  { id: 4, slug: 'one-on-one', name: '1-on-1 Personal Training', short_desc: 'Fully individualized coaching, every session.', long_desc: "One coach, one athlete, one plan. Every session is built around your goals, your schedule, and where you are today — no generic programming.", duration_min: 60, price_label: 'From $70 / session', sort_order: 4, active: true },
-  { id: 5, slug: 'free-consult', name: 'Free Movement Consult', short_desc: 'Not sure where to start? Come in and find out.', long_desc: 'A no-cost, no-pressure walkthrough of the space, a quick movement assessment, and a conversation about your goals. This is how most new clients start.', duration_min: 30, price_label: 'Free', sort_order: 5, active: true }
+  {
+    id: 1,
+    slug: 'sports-performance',
+    name: 'Sports Performance Training',
+    short_desc: 'Speed, power, and explosiveness for competitive athletes.',
+    long_desc: 'Built for athletes who want to move faster, jump higher, and hold up over a full season. Sessions blend speed mechanics, power development, and sport-specific conditioning, programmed around your competition calendar.',
+    duration_min: 60,
+    price_label: 'From $65 / session',
+    sort_order: 1,
+    active: true,
+    image_path: '/images/stock/sprint-start.jpg',
+    focus_points: ['Acceleration and top-end speed mechanics', 'Explosive power development', 'Sport-specific conditioning blocks', 'Programmed around your season and competition calendar']
+  },
+  {
+    id: 2,
+    slug: 'strength-conditioning',
+    name: 'Strength & Conditioning',
+    short_desc: 'Build a stronger, more resilient base year-round.',
+    long_desc: 'Foundational strength work for athletes and everyday clients alike. We program progressive lifting, conditioning, and mobility work so you get stronger without breaking down.',
+    duration_min: 60,
+    price_label: 'From $60 / session',
+    sort_order: 2,
+    active: true,
+    image_path: '/images/stock/chalk-hands.jpg',
+    focus_points: ['Progressive strength programming', 'Conditioning built around your baseline', 'Mobility work to support long-term training', 'Technique first, load added once it is earned']
+  },
+  {
+    id: 3,
+    slug: 'injury-prevention',
+    name: 'Injury Prevention & Recovery',
+    short_desc: 'Move well, stay on the field, and train through old limitations.',
+    long_desc: 'A movement-first approach for clients returning from injury or looking to stay ahead of one. We assess how you move, correct the gaps, and build a plan that keeps you training consistently.',
+    duration_min: 45,
+    price_label: 'From $55 / session',
+    sort_order: 3,
+    active: true,
+    image_path: '/images/stock/coach-spot.jpg',
+    focus_points: ['Movement assessment to find the real limitation', 'Corrective work built into every session', 'Gradual return-to-training progressions', 'Close coordination with your PT or physician, if applicable']
+  },
+  {
+    id: 4,
+    slug: 'one-on-one',
+    name: '1-on-1 Personal Training',
+    short_desc: 'Fully individualized coaching, every session.',
+    long_desc: "One coach, one athlete, one plan. Every session is built around your goals, your schedule, and where you are today — no generic programming.",
+    duration_min: 60,
+    price_label: 'From $70 / session',
+    sort_order: 4,
+    active: true,
+    image_path: '/images/stock/coach-spot.jpg',
+    focus_points: ['A plan built entirely around your goals', 'Hands-on coaching and form correction every rep', 'Progress tracked and adjusted session to session', 'Flexible scheduling around your week']
+  },
+  {
+    id: 5,
+    slug: 'free-consult',
+    name: 'Free Movement Consult',
+    short_desc: 'Not sure where to start? Come in and find out.',
+    long_desc: 'A no-cost, no-pressure walkthrough of the space, a quick movement assessment, and a conversation about your goals. This is how most new clients start.',
+    duration_min: 30,
+    price_label: 'Free',
+    sort_order: 5,
+    active: true,
+    image_path: '/images/facility.jpg',
+    focus_points: ['A tour of the space and equipment', 'A quick, no-pressure movement assessment', 'A conversation about your goals and schedule', 'A recommendation on which program fits — no obligation']
+  }
 ];
 
 const products = [

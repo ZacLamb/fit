@@ -1,18 +1,28 @@
 <%- include('partials/header') %>
 
+<section class="service-hero" style="background-image:url('<%= service.image_path %>');">
+  <div class="service-hero-inner">
+    <span class="eyebrow"><%= service.duration_min %> MINUTE SESSION</span>
+    <h1 style="max-width:20ch;"><%= service.name %></h1>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <div class="grid grid-2" style="align-items:start;">
       <div>
-        <span class="eyebrow"><%= service.duration_min %> MINUTE SESSION</span>
-        <h1 style="max-width:none;"><%= service.name %></h1>
         <p><%= service.long_desc %></p>
-        <div class="panel-price" style="font-size:1.4rem;"><%= service.price_label %></div>
-        <a href="/booking?service=<%= service.id %>" class="btn btn-primary">Book This Session</a>
+        <h3 style="margin-top:32px;">What's included</h3>
+        <ul class="focus-list">
+          <% service.focus_points.forEach(function(point) { %>
+            <li><%= point %></li>
+          <% }); %>
+        </ul>
       </div>
-      <div class="panel">
-        <h3>What to expect</h3>
+      <div class="panel panel-dark">
+        <div class="panel-price" style="font-size:1.4rem;"><%= service.price_label %></div>
         <p>Sessions are coached one-on-one at 2 Tupper Rd, Sandwich, MA. Wear training clothes you can move in, and arrive 10 minutes early for your first visit.</p>
+        <a href="/booking?service=<%= service.id %>" class="btn btn-primary btn-block" style="margin-top:12px;">Book This Session</a>
         <a href="/services" class="panel-link">&lsaquo; Back to all services</a>
       </div>
     </div>

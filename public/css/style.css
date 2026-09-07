@@ -78,8 +78,9 @@ p { max-width: 62ch; }
   border: var(--border-thick) solid currentColor;
   cursor: pointer;
   background: none;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
+.btn:active { transform: translateY(1px); }
 .btn-primary {
   background: var(--rust);
   border-color: var(--rust);
@@ -150,17 +151,56 @@ p { max-width: 62ch; }
   border-radius: 999px;
   padding: 1px 6px;
 }
-.nav-toggle { display: none; }
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--chalk);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 @media (max-width: 760px) {
-  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--iron);
+    border-bottom: var(--border-thick) solid var(--turf);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .nav-links.open { max-height: 420px; }
+  .nav-links li { border-top: 1px solid rgba(247,246,243,0.12); }
+  .nav-links a { display: block; padding: 16px 24px; border-bottom: none; }
+  .nav-links a.active, .nav-links a:hover { border-bottom: none; background: var(--iron-2); }
+  .nav-cart { border-top: 1px solid rgba(247,246,243,0.12); }
 }
 
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
   color: var(--chalk);
-  background: var(--iron) url('/images/facility.jpg') center/cover no-repeat;
+  background: var(--iron) center/cover no-repeat;
   min-height: 78vh;
   display: flex;
   align-items: flex-end;
@@ -226,12 +266,18 @@ p { max-width: 62ch; }
   display: flex;
   flex-direction: column;
   height: 100%;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.panel:has(.panel-link):hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 4px 4px 0 var(--turf);
 }
 .panel-dark {
   border-color: var(--concrete);
   background: var(--iron-2);
   color: var(--chalk);
 }
+.panel-dark:hover { box-shadow: 4px 4px 0 var(--rust); }
 .panel-tag {
   font-family: var(--font-display);
   font-size: 0.85rem;
@@ -256,6 +302,60 @@ p { max-width: 62ch; }
   margin-top: auto;
 }
 .panel-dark .panel-link { border-top-color: var(--steel); }
+
+/* Service card with thumbnail image */
+.panel-service { padding: 0; overflow: hidden; }
+.panel-service .service-thumb {
+  height: 190px;
+  object-fit: cover;
+  border-bottom: var(--border-thick) solid var(--iron);
+}
+.panel-service .panel-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+
+/* Service detail hero */
+.service-hero {
+  position: relative;
+  color: var(--chalk);
+  min-height: 46vh;
+  display: flex;
+  align-items: flex-end;
+  background: var(--iron) center/cover no-repeat;
+  margin-bottom: 0;
+}
+.service-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,22,26,0.35) 0%, rgba(20,22,26,0.92) 100%);
+}
+.service-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 48px 24px;
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+}
+.focus-list {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+.focus-list li {
+  padding: 12px 0 12px 28px;
+  border-bottom: 1px solid var(--concrete);
+  position: relative;
+}
+.focus-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  background: var(--turf);
+}
+.focus-list.on-dark li { border-bottom-color: var(--steel); }
 
 /* ---------- Facility strip ---------- */
 .facility-strip img {
