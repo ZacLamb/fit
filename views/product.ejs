@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2" style="align-items:start;">
+      <img src="<%= product.image_path %>" alt="<%= product.name %>" onerror="this.src='/images/facility.jpg'" style="border: var(--border-thick) solid var(--iron);">
+      <div>
+        <h1 style="max-width:none;"><%= product.name %></h1>
+        <div class="panel-price" style="font-size:1.5rem;">$<%= (product.price_cents / 100).toFixed(2) %></div>
+        <p><%= product.description %></p>
+
+        <form method="POST" action="/shop/cart/add">
+          <input type="hidden" name="product_id" value="<%= product.id %>">
+          <div class="qty-size-row">
+            <% if (product.sizes) { %>
+              <div class="form-field">
+                <label for="size">Size</label>
+                <select id="size" name="size" required>
+                  <% product.sizes.split(',').forEach(function(sz) { %>
+                    <option value="<%= sz.trim() %>"><%= sz.trim() %></option>
+                  <% }); %>
+                </select>
+              </div>
+            <% } %>
+            <div class="form-field">
+              <label for="qty">Qty</label>
+              <input type="number" id="qty" name="qty" value="1" min="1" max="10">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
+        </form>
+
+        <a href="/shop" class="panel-link" style="display:inline-block; margin-top:20px;">&lsaquo; Back to Shop</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

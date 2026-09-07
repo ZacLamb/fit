@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">MERCH</span>
+      <h1 style="max-width:none;">Gear up.</h1>
+      <p>Train in it, wear it around town. All merch ships from Sandwich, MA.</p>
+    </div>
+    <img src="/images/stock/plates.jpg" alt="" onerror="this.style.display='none'" style="width:100%; height:220px; object-fit:cover; margin-bottom:48px; border: var(--border-thick) solid var(--iron);">
+    <div class="grid grid-4">
+      <% products.forEach(function(p) { %>
+        <div class="panel product-card">
+          <img src="<%= p.image_path %>" alt="<%= p.name %>" onerror="this.src='/images/facility.jpg'">
+          <div class="panel-body">
+            <h3><%= p.name %></h3>
+            <div class="panel-price">$<%= (p.price_cents / 100).toFixed(2) %></div>
+            <a href="/shop/product/<%= p.slug %>" class="panel-link">View &rsaquo;</a>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

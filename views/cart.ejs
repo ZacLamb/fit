@@ -1,0 +1,47 @@
+<%- include('partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <h1 style="max-width:none;">Your Cart</h1>
+
+    <% if (!cart.length) { %>
+      <p>Your cart is empty. <a href="/shop" style="color:var(--rust); font-weight:600;">Browse merch &rsaquo;</a></p>
+    <% } else { %>
+      <table class="cart-table">
+        <thead>
+          <tr><th>Item</th><th>Size</th><th>Qty</th><th>Price</th><th></th></tr>
+        </thead>
+        <tbody>
+          <% cart.forEach(function(item, i) { %>
+            <tr>
+              <td><%= item.name %></td>
+              <td><%= item.size || '—' %></td>
+              <td><%= item.qty %></td>
+              <td>$<%= ((item.price_cents * item.qty) / 100).toFixed(2) %></td>
+              <td>
+                <form method="POST" action="/shop/cart/remove" style="margin:0;">
+                  <input type="hidden" name="index" value="<%= i %>">
+                  <button type="submit" class="remove-link" style="background:none;border:none;cursor:pointer;">Remove</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+          <tr class="cart-total-row">
+            <td colspan="3">Total</td>
+            <td colspan="2">$<%= (total / 100).toFixed(2) %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <% if (!stripeEnabled) { %>
+        <div class="alert-error">Online checkout isn't turned on yet — add a Stripe secret key to the environment to accept payments. See README.</div>
+      <% } %>
+
+      <form method="POST" action="/shop/checkout">
+        <button type="submit" class="btn btn-primary" <%= stripeEnabled ? '' : 'disabled' %>>Checkout</button>
+      </form>
+    <% } %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

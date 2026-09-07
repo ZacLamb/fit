@@ -1,0 +1,82 @@
+<%- include('partials/header') %>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">SANDWICH, MA</span>
+    <h1>A NEW CHAPTER BEGINS.</h1>
+    <p class="hero-sub">Zezze Athletics is a training space built to help athletes and everyday clients improve performance, build strength, and prevent injury — in partnership with Cape Cod Holistic Fitness.</p>
+    <div class="hero-cta">
+      <a href="/booking" class="btn btn-primary">Book a Session</a>
+      <a href="/services" class="btn btn-outline on-dark">See Our Training</a>
+    </div>
+    <div class="hero-meta">
+      <span>2 Tupper Rd, Sandwich, MA</span>
+      <span>Now accepting new clients</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">WHAT WE DO</span>
+      <h2>Training for how you actually move.</h2>
+      <p>Whether you're an athlete looking to elevate your performance or simply focused on becoming stronger and healthier, our programming is built around you — not a template.</p>
+    </div>
+    <div class="grid grid-4">
+      <% services.forEach(function(s) { %>
+        <div class="panel">
+          <div class="panel-tag"><%= s.duration_min %> MIN SESSION</div>
+          <h3><%= s.name %></h3>
+          <p><%= s.short_desc %></p>
+          <div class="panel-price"><%= s.price_label %></div>
+          <a href="/services/<%= s.slug %>" class="panel-link">Learn more &rsaquo;</a>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="facility-strip">
+  <img src="/images/facility.jpg" alt="Inside the Zezze Athletics training space in Sandwich, MA">
+</section>
+
+<section class="section section-dark">
+  <div class="container">
+    <div class="grid grid-2" style="align-items:center;">
+      <div>
+        <span class="eyebrow">THE SPACE</span>
+        <h2>Built for real training, not a treadmill row.</h2>
+        <p style="color:var(--concrete);">Racks, sleds, turf, and the equipment that actually moves the needle — set up for one-on-one coaching, not a crowded floor. Every session is coached, every plan is yours.</p>
+        <a href="/about" class="btn btn-outline on-dark" style="margin-top:20px;">More About Zezze Athletics</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">1:1</div>
+          <div class="label">Coach to athlete ratio</div>
+        </div>
+        <div class="stat">
+          <div class="num">30+</div>
+          <div class="label">Min free movement consult</div>
+        </div>
+        <div class="stat">
+          <div class="num">6</div>
+          <div class="label">Days a week coaching</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-turf text-center">
+  <div class="container">
+    <h2>Now accepting new clients.</h2>
+    <p class="text-center" style="color:var(--chalk); opacity:0.95;">Message us for training inquiries and availability, or book your first session directly online.</p>
+    <div class="hero-cta" style="justify-content:center;">
+      <a href="/booking" class="btn btn-outline on-dark">Book a Session</a>
+      <a href="/contact" class="btn btn-outline on-dark">Ask a Question</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

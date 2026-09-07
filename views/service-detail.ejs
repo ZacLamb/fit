@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2" style="align-items:start;">
+      <div>
+        <span class="eyebrow"><%= service.duration_min %> MINUTE SESSION</span>
+        <h1 style="max-width:none;"><%= service.name %></h1>
+        <p><%= service.long_desc %></p>
+        <div class="panel-price" style="font-size:1.4rem;"><%= service.price_label %></div>
+        <a href="/booking?service=<%= service.id %>" class="btn btn-primary">Book This Session</a>
+      </div>
+      <div class="panel">
+        <h3>What to expect</h3>
+        <p>Sessions are coached one-on-one at 2 Tupper Rd, Sandwich, MA. Wear training clothes you can move in, and arrive 10 minutes early for your first visit.</p>
+        <a href="/services" class="panel-link">&lsaquo; Back to all services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

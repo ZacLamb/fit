@@ -1,0 +1,61 @@
+<%- include('partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">BOOK A SESSION</span>
+      <h1 style="max-width:none;">Grab a spot on the schedule.</h1>
+      <p>Pick a program, choose a time that works, and you're on the calendar. First time here? Start with the free movement consult.</p>
+    </div>
+
+    <form id="booking-form" class="booking-layout" method="POST" action="/booking">
+      <div>
+        <span class="step-marker">STEP 1 — PROGRAM &amp; TIME</span>
+        <div class="form-field">
+          <label for="service_id">Program</label>
+          <select id="service_id" name="service_id" required>
+            <option value="" disabled selected>Choose a program</option>
+            <% services.forEach(function(s) { %>
+              <option value="<%= s.id %>"><%= s.name %> — <%= s.price_label %></option>
+            <% }); %>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required min="<%= new Date().toISOString().slice(0,10) %>">
+        </div>
+        <div class="form-field">
+          <label>Available Times</label>
+          <div id="slot-grid" class="slot-grid">
+            <span class="slot-empty">Choose a program and date to see open times.</span>
+          </div>
+          <input type="hidden" id="start_time" name="start_time" required>
+        </div>
+      </div>
+
+      <div class="panel">
+        <span class="step-marker">STEP 2 — YOUR INFO</span>
+        <div class="form-field">
+          <label for="client_name">Full Name</label>
+          <input type="text" id="client_name" name="client_name" required>
+        </div>
+        <div class="form-field">
+          <label for="client_email">Email</label>
+          <input type="email" id="client_email" name="client_email" required>
+        </div>
+        <div class="form-field">
+          <label for="client_phone">Phone</label>
+          <input type="tel" id="client_phone" name="client_phone">
+        </div>
+        <div class="form-field">
+          <label for="notes">Anything we should know?</label>
+          <textarea id="notes" name="notes" placeholder="Injuries, goals, sport, schedule constraints..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn" disabled>Confirm Booking</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+<script src="/js/booking.js"></script>

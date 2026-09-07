@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title + ' — Zezze Athletics' : 'Zezze Athletics — Sandwich, MA' %></title>
+  <meta name="description" content="Sports performance, strength & conditioning, and injury prevention training in Sandwich, MA. In partnership with Cape Cod Holistic Fitness.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="/" class="brand">ZEZZE <span>ATHLETICS</span></a>
+      <ul class="nav-links">
+        <li><a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a></li>
+        <li><a href="/services" class="<%= currentPath.startsWith('/services') ? 'active' : '' %>">Services</a></li>
+        <li><a href="/booking" class="<%= currentPath.startsWith('/booking') ? 'active' : '' %>">Book a Session</a></li>
+        <li><a href="/shop" class="<%= currentPath.startsWith('/shop') ? 'active' : '' %>">Shop</a></li>
+        <li><a href="/about" class="<%= currentPath === '/about' ? 'active' : '' %>">About</a></li>
+        <li><a href="/contact" class="<%= currentPath === '/contact' ? 'active' : '' %>">Contact</a></li>
+        <li class="nav-cart">
+          <a href="/shop/cart">Cart<% if (cartCount > 0) { %><span class="cart-badge"><%= cartCount %></span><% } %></a>
+        </li>
+      </ul>
+    </div>
+  </header>
